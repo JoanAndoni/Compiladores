@@ -1,9 +1,13 @@
 class automata:
-    def __init__(self):
+    def __init__(self, regex):
+        # Define the variables of the automata
         self.nodos = []
         self.tablaTransiciones = []
         self.operadores = ["u", "n", "(", ")", "|", "*"]
         self.alfabeto = []
+
+        # Initialize the automata
+        self.alfabeto = self.definirAlfabeto(regex)
         self.crearNodo([2], 1)
         self.crearNodo([], 0)
 
@@ -16,11 +20,10 @@ class automata:
         self.nodos.append(nodo)
         return nodo
 
-    def crearLenguaje(self, regex):
+    def definirAlfabeto(self, regex):
         for letter in regex:
             if letter not in self.operadores:
-                self.lenguaje.append(letter)
-        return self.lenguaje
+                self.alfabeto.append(letter)
+        return self.alfabeto
 
-automata1 = automata()
-automata1.crearLenguaje("(ab)*E")
+automata1 = automata("(ab)*E")
